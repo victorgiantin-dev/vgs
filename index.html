@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#4A2C2A">
+  <meta name="description" content="Victor Giantin Scacchetti — Digital Designer com foco em UX Design, UI Design e UX Research.">
+  <title>Victor Giantin Scacchetti — Digital Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brown: #4A2C2A;
+      --beige: #F5F5DC;
+      --gold: #B8860B;
+      --green: #006400;
+      --navy: #000080;
+      --ink: #282322;
+      --muted: #655d59;
+      --line: #ded8c9;
+      --paper: #fffdf7;
+      --white: #fff;
+      --radius: 5px;
+      --shadow: 0 2px 12px rgba(40, 35, 34, .07);
+      --serif: "Lora", Georgia, serif;
+      --mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--serif); font-size: 16px; line-height: 1.7; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+    .wrap { width: min(1280px, calc(100% - 3rem)); margin-inline: auto; }
+    .eyebrow { display: inline-flex; gap: .7rem; align-items: center; color: var(--gold); font: 500 .78rem/1.5 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+    .site-header { position: sticky; top: 0; z-index: 100; background: rgba(255,253,247,.94); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(74,44,42,.12); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .brand { display: inline-flex; align-items: center; gap: .75rem; text-decoration: none; font-weight: 700; letter-spacing: -.03em; }
+    .brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--gold); color: var(--brown); font: 500 .8rem var(--mono); border-radius: 50%; }
+    .nav-links { display: flex; align-items: center; gap: clamp(.8rem, 2vw, 1.8rem); }
+    .nav-links a { font-size: .86rem; text-decoration: none; color: var(--muted); transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--brown); }
+    .nav-links a.active { box-shadow: inset 0 -2px var(--gold); padding-bottom: .4rem; }
+    .menu-toggle { display: none; border: 1px solid var(--line); border-radius: var(--radius); padding: .5rem .7rem; background: transparent; color: var(--brown); font: 500 .8rem var(--mono); }
+    .hero { position: relative; overflow: hidden; padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(5rem, 10vw, 9rem); background: var(--beige); }
+    .hero::after { content: ""; position: absolute; width: min(46vw, 600px); aspect-ratio: 1; right: -8%; top: 10%; border: 1px solid rgba(74,44,42,.18); border-radius: 48% 52% 58% 42% / 45% 42% 58% 55%; transform: rotate(-18deg); pointer-events: none; }
+    .hero::before { content: ""; position: absolute; width: min(32vw, 420px); aspect-ratio: 1; right: 2%; top: 21%; border: 1px solid rgba(184,134,11,.35); border-radius: 56% 44% 39% 61% / 47% 55% 45% 53%; transform: rotate(25deg); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr); gap: 3rem; align-items: center; position: relative; z-index: 1; }
+    .hero h1 { max-width: 850px; margin: 1.2rem 0; color: var(--brown); font-size: clamp(2.7rem, 6.2vw, 5.5rem); line-height: 1.08; letter-spacing: -.065em; }
+    .hero h1 span { color: var(--gold); font-weight: 500; font-style: italic; }
+    .hero-copy { max-width: 620px; color: #514542; font-size: clamp(1rem, 1.5vw, 1.2rem); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: .6rem; min-height: 46px; padding: .75rem 1.1rem; border: 1px solid var(--brown); border-radius: var(--radius); text-decoration: none; font: 600 .9rem var(--serif); transition: transform .2s, background .2s, box-shadow .2s; }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 5px 14px rgba(40,35,34,.12); }
+    .button-primary { background: var(--brown); color: var(--white); }
+    .button-primary:hover { background: #392120; }
+    .button-ghost { color: var(--brown); background: transparent; }
+    .hero-aside { justify-self: end; width: min(100%, 340px); padding: 1.6rem; background: rgba(255,253,247,.72); border: 1px solid rgba(74,44,42,.15); box-shadow: 10px 10px 0 rgba(184,134,11,.15); }
+    .aside-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; font: .72rem var(--mono); color: var(--muted); }
+    .monogram { margin: 1.5rem 0 1.2rem; color: var(--brown); font-size: clamp(4rem, 8vw, 6.2rem); line-height: 1; letter-spacing: -.1em; }
+    .aside-rule { height: 1px; background: var(--line); }
+    .aside-title { margin: 1rem 0 .25rem; font-weight: 600; }
+    .aside-sub { margin: 0; color: var(--muted); font-size: .88rem; }
+    section { padding: clamp(4rem, 8vw, 7.5rem) 0; }
+    .section-head { max-width: 740px; margin-bottom: 3rem; }
+    .section-head h2 { margin: .8rem 0; color: var(--brown); font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.18; letter-spacing: -.05em; }
+    .section-head p { max-width: 65ch; margin: 0; color: var(--muted); }
+    .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 7vw, 7rem); align-items: start; }
+    .about-note { padding: 1.5rem; border-left: 3px solid var(--gold); background: #f4f0e4; }
+    .about-note p { margin: 0; }
+    .about-copy p { margin-top: 0; color: #4d4642; }
+    .skill-section { background: var(--brown); color: var(--beige); }
+    .skill-section .section-head h2 { color: var(--beige); }
+    .skill-section .section-head p { color: #e0d6ca; }
+    .skill-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1.2rem; align-items: stretch; }
+    .skill-card { padding: clamp(1.4rem, 3vw, 2.2rem); border: 1px solid rgba(245,245,220,.2); background: rgba(255,255,255,.035); border-radius: var(--radius); }
+    .skill-card h3 { margin: 0 0 1.2rem; font-size: 1.2rem; font-weight: 600; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: .65rem; padding: 0; margin: 0; list-style: none; }
+    .skill-list li { padding: .55rem .75rem; border: 1px solid rgba(245,245,220,.28); color: var(--beige); font-size: .88rem; }
+    .skill-aside { display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+    .skill-aside .big-label { color: #e7c979; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; letter-spacing: -.05em; }
+    .skill-aside p { margin-bottom: 0; color: #e0d6ca; }
+    .experience-layout { display: grid; grid-template-columns: .65fr 1.35fr; gap: clamp(2rem, 7vw, 7rem); }
+    .experience-index { align-self: start; position: sticky; top: 110px; }
+    .experience-index .index-number { font: 500 clamp(3.5rem, 8vw, 6.5rem)/1 var(--mono); color: var(--gold); letter-spacing: -.1em; }
+    .experience-index p { color: var(--muted); max-width: 24ch; }
+    .timeline { border-top: 1px solid var(--line); }
+    .job { padding: 2rem 0; border-bottom: 1px solid var(--line); }
+    .job-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; }
+    .job h3 { margin: 0; color: var(--brown); font-size: 1.45rem; }
+    .job-role { margin: .2rem 0; font-weight: 600; }
+    .job-meta { color: var(--muted); font: .75rem/1.7 var(--mono); }
+    .job p { max-width: 72ch; color: #4d4642; }
+    .job-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .job-tags span { color: var(--green); background: #e8eee4; padding: .25rem .55rem; font-size: .76rem; }
+    .education { background: #f1eee4; }
+    .education-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem; align-items: start; }
+    .education-feature { padding: 2rem; background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .education-feature h3 { margin: .6rem 0; color: var(--brown); font-size: 1.5rem; }
+    .education-feature p { margin: 0; color: var(--muted); }
+    .education-list { border-top: 1px solid #d4cdbc; }
+    .education-item { padding: 1.2rem 0; border-bottom: 1px solid #d4cdbc; }
+    .education-item h3 { margin: 0; color: var(--brown); font-size: 1.05rem; }
+    .education-item p { margin: .25rem 0 0; color: var(--muted); font-size: .88rem; }
+    .contact { padding-bottom: 5rem; }
+    .contact-panel { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2rem; padding: clamp(2rem, 5vw, 4rem); color: var(--beige); background: var(--green); border-radius: var(--radius); position: relative; overflow: hidden; }
+    .contact-panel::after { content: ""; position: absolute; right: -70px; top: -100px; width: 280px; height: 280px; border: 1px solid rgba(245,245,220,.2); border-radius: 50%; pointer-events: none; }
+    .contact-panel h2 { max-width: 650px; margin: .8rem 0; font-size: clamp(2rem, 4.5vw, 3.8rem); line-height: 1.15; letter-spacing: -.05em; }
+    .contact-panel p { max-width: 55ch; margin-bottom: 0; color: #e1eadb; }
+    .contact-panel .eyebrow { color: #e7c979; }
+    .contact-panel .button { position: relative; z-index: 1; border-color: var(--beige); color: var(--brown); background: var(--beige); white-space: nowrap; }
+    footer { border-top: 1px solid var(--line); padding: 1.5rem 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .8rem; }
+    .footer-inner a { text-decoration: none; }
+    .footer-inner a:hover { color: var(--brown); }
+    .to-top { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 90; width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--brown); box-shadow: var(--shadow); cursor: pointer; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .2s, transform .2s; }
+    .to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .42s ease-out, transform .42s ease-out; }
+    .reveal.in-view { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } .reveal { opacity: 1; transform: none; } }
+    @media (max-width: 767px) {
+      .wrap { width: min(100% - 2rem, 1280px); }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; padding: .75rem 1rem 1rem; flex-direction: column; align-items: stretch; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: .8rem .4rem; border-bottom: 1px solid #eee8da; }
+      .nav-links a.active { box-shadow: inset 3px 0 var(--gold); padding-left: .8rem; padding-bottom: .8rem; }
+      .hero { padding-top: 4rem; }
+      .hero-grid, .about-grid, .skill-grid, .experience-layout, .education-grid, .contact-panel { grid-template-columns: 1fr; }
+      .hero-grid { gap: 2.8rem; }
+      .hero::after { width: 70vw; top: 42%; right: -30%; }
+      .hero::before { width: 50vw; top: 50%; right: -12%; }
+      .hero-aside { justify-self: start; width: min(100%, 400px); }
+      .experience-index { position: static; }
+      .experience-index p { max-width: 45ch; }
+      .job-top { flex-direction: column; gap: .4rem; }
+      .contact-panel { align-items: start; }
+      .contact-panel .button { justify-self: start; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Navegação principal">
+      <a class="brand" href="#inicio" aria-label="Victor Giantin Scacchetti — início">
+        <span class="brand-mark" aria-hidden="true">VG</span><span>Victor Giantin Scacchetti</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu <span aria-hidden="true">+</span></button>
+      <div class="nav-links" id="nav-links">
+        <a href="#sobre">Sobre</a><a href="#competencias">Competências</a><a href="#experiencia">Experiência</a><a href="#formacao">Formação</a><a href="#contato">Contato</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="wrap hero-grid">
+        <div class="hero-main reveal">
+          <span class="eyebrow">Portfólio profissional · São Paulo, Brasil</span>
+          <h1>Design com intenção.<br><span>Experiências com propósito.</span></h1>
+          <p class="hero-copy">Sou Victor Giantin Scacchetti, Digital Designer com foco em UX Design, UI Design e UX Research. Uno repertório criativo, visão de negócio e experiência no relacionamento com clientes.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#experiencia">Conheça minha trajetória <span aria-hidden="true">↘</span></a>
+            <a class="button button-ghost" href="mailto:victor.giantin@gmail.com">Entre em contato</a>
+          </div>
+        </div>
+        <aside class="hero-aside reveal" aria-label="Resumo profissional">
+          <div class="aside-top"><span>PERFIL / 001</span><span>DESIGN DIGITAL</span></div>
+          <div class="monogram" aria-hidden="true">VG.</div>
+          <div class="aside-rule"></div>
+          <p class="aside-title">Digital Designer</p>
+          <p class="aside-sub">UX Design · UI Design · UX Research</p>
+          <div class="aside-rule" style="margin-top:1.2rem"></div>
+          <p class="aside-sub" style="margin-top:1rem">Inglês · nível nativo ou bilíngue</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">01 / Sobre mim</span>
+          <h2>Uma trajetória entre criatividade, pessoas e negócio.</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-note reveal"><p>“Acredito em soluções de design que consideram tanto a experiência das pessoas quanto os objetivos do negócio.”</p></div>
+          <div class="about-copy reveal">
+            <p>Minha experiência profissional combina comunicação visual, presença digital, contato direto com clientes e compreensão de processos de negócio. Ao longo de oito anos na Signo Financeira, comecei como estagiário e participei da criação do site e da identidade visual da empresa.</p>
+            <p>Com o tempo, passei a atuar mais próximo dos clientes e integrei o comitê de crédito, desenvolvendo experiência em análise de crédito e avaliação de riscos. Essa vivência ampliou minha visão sobre como decisões, necessidades e objetivos se conectam.</p>
+            <p>Hoje, meu perfil profissional está direcionado ao Design Digital, com foco em UX Design, UI Design e UX Research.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skill-section" id="competencias">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">02 / Competências</span>
+          <h2>Uma base criativa com visão prática.</h2>
+          <p>Competências e áreas de atuação mencionadas no perfil profissional, reunidas em uma visão clara.</p>
+        </div>
+        <div class="skill-grid">
+          <article class="skill-card reveal">
+            <h3>Áreas de atuação</h3>
+            <ul class="skill-list">
+              <li>UX Design</li><li>UI Design</li><li>UX Research</li><li>Design Digital</li><li>Design de Multimídia</li>
+            </ul>
+          </article>
+          <article class="skill-card skill-aside reveal">
+            <div>
+              <h3>Competências principais</h3>
+              <ul class="skill-list"><li>Estratégia de marca</li><li>Criação de conteúdo</li><li>Trabalho em equipe</li></ul>
+            </div>
+            <div>
+              <div class="big-label">Pessoas +<br>negócio + design</div>
+              <p>Uma combinação construída entre trabalho criativo, relacionamento com clientes e análise de processos.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiencia">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">03 / Experiência</span>
+          <h2>Aprendizado construído na prática.</h2>
+        </div>
+        <div class="experience-layout">
+          <aside class="experience-index reveal">
+            <div class="index-number">08<span style="font-size:.45em">+</span></div>
+            <p>Anos de experiência na Signo Financeira, de abril de 2016 a março de 2024.</p>
+          </aside>
+          <div class="timeline">
+            <article class="job reveal">
+              <div class="job-top">
+                <div><h3>Signo Financeira</h3><div class="job-role">Assistente administrativo de marketing e vendas</div></div>
+                <div class="job-meta">ABR 2016 — MAR 2024<br>São Paulo, Brasil</div>
+              </div>
+              <p>Iniciei minha jornada como estagiário, apoiando as operações diárias e o desenvolvimento da presença online da empresa. Participei da criação do site e da identidade visual da Signo, contribuindo para a comunicação da marca.</p>
+              <p>Ao longo do tempo, passei a interagir diretamente com clientes e integrei o comitê de crédito. Nesse contexto, desenvolvi habilidades em análise de crédito e avaliação de riscos, além de ampliar minha compreensão sobre processos de decisão financeira e sua relação com a sustentabilidade do negócio.</p>
+              <div class="job-tags"><span>Presença digital</span><span>Identidade visual</span><span>Relacionamento com clientes</span><span>Análise de crédito</span><span>Avaliação de riscos</span></div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="education" id="formacao">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">04 / Formação</span>
+          <h2>Estudo e prática em design.</h2>
+          <p>Formações listadas no currículo, organizadas por instituição e período informado.</p>
+        </div>
+        <div class="education-grid">
+          <article class="education-feature reveal">
+            <span class="eyebrow">Formação universitária</span>
+            <h3>Universidade Anhembi Morumbi</h3>
+            <p>Bacharelado em Design Digital e Multimídia</p>
+            <p style="margin-top:.7rem;font-family:var(--mono);font-size:.78rem">2015 — 2018</p>
+          </article>
+          <div class="education-list">
+            <article class="education-item reveal">
+              <h3>EBAC — Escola Britânica de Artes Criativas e Tecnologia</h3>
+              <p>Curso Técnico Integrado · junho de 2022 — maio de 2024</p>
+            </article>
+            <article class="education-item reveal">
+              <h3>EBAC — Escola Britânica de Artes Criativas e Tecnologia</h3>
+              <p>Design Digital e Multimídia · dezembro de 2023 — fevereiro de 2024</p>
+            </article>
+            <article class="education-item reveal">
+              <h3>Escola Guilda</h3>
+              <p>Curso de Desenho · fevereiro de 2019 — dezembro de 2019</p>
+            </article>
+            <article class="education-item reveal">
+              <h3>redzero</h3>
+              <p>Design Digital e Multimídia · julho de 2014 — junho de 2015</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="wrap">
+        <div class="contact-panel reveal">
+          <div>
+            <span class="eyebrow">05 / Contato</span>
+            <h2>Vamos conversar sobre design e oportunidades.</h2>
+            <p>Estou disponível para conexões profissionais e conversas sobre oportunidades alinhadas à minha trajetória em design digital.</p>
+          </div>
+          <a class="button" href="mailto:victor.giantin@gmail.com">victor.giantin@gmail.com <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> Victor Giantin Scacchetti</span>
+      <span><a href="https://www.linkedin.com/in/victor-scacchetti" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a> · São Paulo, Brasil</span>
+      <a href="#inicio">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+  <button class="to-top" id="to-top" type="button" aria-label="Voltar ao topo">↑</button>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    menuButton.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.querySelector('span').textContent = isOpen ? '−' : '+';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.querySelector('span').textContent = '+';
+    }));
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const topButton = document.getElementById('to-top');
+    window.addEventListener('scroll', () => topButton.classList.toggle('visible', window.scrollY > 500), { passive: true });
+    topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('in-view'));
+    }
+
+    const sections = document.querySelectorAll('main section[id]');
+    const navItems = document.querySelectorAll('.nav-links a');
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            navItems.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id));
+          }
+        });
+      }, { rootMargin: '-25% 0px -65% 0px' });
+      sections.forEach(section => sectionObserver.observe(section));
+    }
+  </script>
+</body>
+</html>
